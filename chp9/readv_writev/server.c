@@ -49,27 +49,27 @@ int main(int argc,char **argv)
 	int err;
 	pid_t pid;
 
-	/*½¨Á¢Ò»¸öÁ÷Ê½Ì×½Ó×Ö*/
+	/*å»ºç«‹ä¸€ä¸ªæµå¼å¥—æ¥å­—*/
 	ss = socket(AF_INET, SOCK_STREAM, 0);
 	if(ss < 0){
 		printf("socket error\n");
 		return -1;
 	}
 
-	/*ÉèÖÃ·şÎñ¶ËµØÖ·*/
+	/*è®¾ç½®æœåŠ¡ç«¯åœ°å€*/
 	bzero(&server_addr, sizeof(server_addr));
 	server_addr.sin_family = AF_INET;
-	server_addr.sin_addr.s_addr = htonl(INADDR_ANY);	/*±¾µØµØÖ·*/
+	server_addr.sin_addr.s_addr = htonl(INADDR_ANY);	/*æœ¬åœ°åœ°å€*/
 	server_addr.sin_port = htons(PORT);
 
-	/*°ó¶¨Ì×½Ó×Öµ½Ì×½Ó×ÖÃèÊö·û*/
+	/*ç»‘å®šå¥—æ¥å­—åˆ°å¥—æ¥å­—æè¿°ç¬¦*/
 	err = bind(ss,(struct sockaddr*)&server_addr,sizeof(server_addr));
 	if(err < 0){
 		printf("bind error\n");
 		return -1;
 	}
 
-	/*ÉèÖÃÕìÌı*/
+	/*è®¾ç½®ä¾¦å¬*/
 	err = listen(ss, BACKLOG);
 	if(err < 0){
 		printf("listen error\n");
@@ -83,7 +83,7 @@ int main(int argc,char **argv)
 			continue;
 		}
 
-		/*½¨Á¢Ò»¸öĞÂµÄ½ø³Ì´¦ÀíÁ¬½Ó*/
+		/*å»ºç«‹ä¸€ä¸ªæ–°çš„è¿›ç¨‹å¤„ç†è¿æ¥*/
 		pid = fork();
 		if(pid ==0){
 			close(ss);
@@ -94,15 +94,5 @@ int main(int argc,char **argv)
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
 
 
